@@ -19,6 +19,7 @@ TODO:  Diagram for lawn tractor
 ```
 catkin_ws/src$ git clone https://github.com/ros-agriculture/tractor_teleop.git
 catkin_ws$ catkin build
+catkin_ws$ source devel/setup.bash
 ```
 2. Launch ROS nodes:
 
