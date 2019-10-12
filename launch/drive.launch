@@ -1,0 +1,6 @@
+<launch>
+  <!-- Joystick Input Node -->
+  <include file="$(find tractor_teleop)/launch/drive_teleop.launch"/>
+  <!-- Multiplex Motor Commands Node -->
+  <include file="$(find tractor_teleop)/launch/cmd_vel_mux.launch"/>
+</launch>
