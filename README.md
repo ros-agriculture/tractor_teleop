@@ -10,9 +10,7 @@ Button control of relay service.
 
 ```
 TODO:  Diagram for lawn tractor
-       Move button setup to launch file
        Instructions on setup
-       Demo of package with simulator
 ```
 
 1. Install:
@@ -33,6 +31,7 @@ OR all-in-one launch:
 $ roslaunch tractor_teleop drive.launch
 ```
 3. Instructions
+![](https://raw.githubusercontent.com/ros-agriculture/tractor_teleop/master/docs/teleop_params.gif)
 
 4. Drive your robot around.
 
