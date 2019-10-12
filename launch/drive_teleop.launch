@@ -33,6 +33,11 @@
       <!--  button to use to cancel autonomous motion  -->
       <param name="move_cancel" value="2" />
 
+      <!-- set launch file -->
+      <param name="start_launch_file_btn" value="8" />
+      <param name="package_name" value="tractor_teleop" />
+      <param name="launch_file_location" value="/launch/test.launch" />
+
       <!-- INPUT TOPICS -->
       <remap from="joy" to="joy" />
 

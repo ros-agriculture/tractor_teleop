@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 import rospy
+import roslaunch
+import rospkg
+import os
 import subprocess
 import time
 
@@ -35,6 +38,11 @@ class DriveTeleop:
         self.estop = rospy.get_param('~estop', 1) # set estop button
         self.move_cancel = rospy.get_param('~move_cancel', 2) # set autonomous cancel button
 
+        # Start launch file from button
+        self.start_launch_file_btn = rospy.get_param('~start_launch_file_btn', 8) # button to start launch
+        self.package_name = rospy.get_param('~package_name', 'tractor_teleop') # package of launch file
+        self.launch_file_location = rospy.get_param('~launch_file_location', '/launch/test.launch') # launch file name
+        
 
     def on_joy(self, data):
 
@@ -48,7 +56,6 @@ class DriveTeleop:
                 new_speed = translate(linear_vel, 0.0, 1.0, 0.0, self.drive_forward_max)
             elif linear_vel < 0:
                 new_speed = translate(linear_vel, -1.0, 0.0, self.drive_reverse_max, 0.0)
-
 
             # Publish message
             twist = Twist()
@@ -68,6 +75,20 @@ class DriveTeleop:
             rospy.loginfo('Cancelling move_base goal')
             cancel_msg = GoalID()
             self.goal_cancel_pub.publish(cancel_msg)
+
+
+        # example of starting launch file from button
+        # Original file from 
+        # https://github.com/nickcharron/waypoint_nav/blob/master/outdoor_waypoint_nav/scripts/joy_launch_control.py
+        if data.buttons[self.start_launch_file_btn]:
+            rospy.loginfo("Starting launch file...")
+
+            # starting launch file
+            example_launch = rospkg.RosPack().get_path(self.package_name) + self.launch_file_location
+            uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+            roslaunch.configure_logging(uuid)
+            launch = roslaunch.parent.ROSLaunchParent(uuid,[example_launch])
+            launch.start()
 
 
 def main():

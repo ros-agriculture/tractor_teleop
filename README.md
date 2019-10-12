@@ -10,7 +10,6 @@ Button control of relay service.
 
 ```
 TODO:  Diagram for lawn tractor
-       Instructions on setup
 ```
 
 1. Install:
@@ -22,7 +21,7 @@ catkin_ws$ source devel/setup.bash
 2. Launch ROS nodes:
 
 ```
-$ roslaunch tractor_teleop drive_teleop.launch joy_dev:=/dev/input/js0
+$ roslaunch tractor_teleop drive_teleop.launch
 $ roslaunch tractor_teleop cmd_vel_mux.launch
 ```
 
